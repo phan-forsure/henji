@@ -1,0 +1,3 @@
+interface option {
+  option: string;
+}
