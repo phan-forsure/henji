@@ -5,9 +5,9 @@ export default function Home() {
   return (
     <>
       <div className="content px-8 p-2">
-        <div>
+        {/* <div>
           <Bar />
-        </div>
+        </div> */}
         <div className="posts overflow-y-scroll h-full">
           <Post />
           <Post />

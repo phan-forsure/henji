@@ -4,8 +4,8 @@ import { inter } from "@/app/ui/font";
 import Sidebar from "./ui/sidebar";
 
 export const metadata: Metadata = {
-  title: "Henji chat app",
-  description: "Chat app",
+  title: "Henji",
+  description: "Social media app",
 };
 
 export default function RootLayout({
@@ -15,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased grid px-32`}>
+      <body
+        className={`${inter.className} antialiased grid px-32 max-md:px-8 max-sm:px-2`}
+      >
         <Sidebar />
         {children}
       </body>
