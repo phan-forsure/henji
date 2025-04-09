@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { inter } from "@/app/ui/font";
 import Sidebar from "./ui/sidebar";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Henji",
@@ -20,6 +21,7 @@ export default function RootLayout({
       >
         <Sidebar />
         {children}
+        <Analytics />
       </body>
     </html>
   );
