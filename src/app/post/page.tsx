@@ -1,7 +1,7 @@
 "use client";
 
-import { writePost } from "../lib/data";
 import { useState } from "react";
+export const dynamic = "force-dynamic";
 
 export default function Write() {
   const [author, setAuthor] = useState("");
