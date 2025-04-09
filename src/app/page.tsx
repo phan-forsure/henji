@@ -12,7 +12,7 @@ export default async function Home() {
         <div>
           <Bar />
         </div>
-          <div className="posts overflow-y-scroll h-full">
+        <div className="posts overflow-y-scroll h-full">
           <Suspense fallback={<h1>Loading...</h1>}>
             {posts.length == 0 && <h1>No posts available</h1>}
             {posts.map((post) => (
@@ -25,7 +25,7 @@ export default async function Home() {
               />
             ))}
           </Suspense>
-          </div>
+        </div>
       </div>
     </>
   );
