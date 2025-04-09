@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 export const dynamic = "force-dynamic";
 
 export default function Write() {
+  const router = useRouter();
   const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -55,6 +57,8 @@ export default function Write() {
                   setAuthor("");
                   setTitle("");
                   setContent("");
+                  router.push("/");
+                  router.refresh();
                 } catch (error) {
                   console.error("Error:", error);
                   alert("Failed to create post. Please try again.");

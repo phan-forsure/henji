@@ -3,9 +3,12 @@ import { fetchPosts } from "./lib/data";
 import Bar from "./ui/bar";
 import Post from "./ui/post";
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function Home() {
   const posts = await fetchPosts();
-  console.log(posts);
+  
   return (
     <>
       <div className="content px-8 p-2">
