@@ -4,6 +4,7 @@ import { inter } from "@/app/ui/font";
 import Sidebar from "./ui/sidebar";
 import { Analytics } from "@vercel/analytics/react";
 
+
 export const metadata: Metadata = {
   title: "Henji",
   description: "Social media app",

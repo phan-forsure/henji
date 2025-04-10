@@ -1,14 +1,17 @@
 export default function Post({ title, author, text, date }: post) {
   return (
-    <div className="post p-8 max-md:p-4 flex flex-wrap flex-col justify-between">
-      <h2 className="text-2xl font-medium">{title}</h2>
-      <p className="my-4">{text}</p>
-      <div className="info opacity-50 font-semibold flex w-full justify-between">
-        <div className="flex justify-between">
-          <p className="px-4">{author}</p>
-          <p className="px-4">{date}</p>
+    <div className="post p-6 max-md:p-4 flex flex-col gap-4 border-b-2 last:border-b-0">
+      <div className="flex flex-col gap-2">
+        <h2 className="text-xl font-semibold">{title}</h2>
+        <p className="leading-relaxed">{text}</p>
+      </div>
+      
+      <div className="flex items-center justify-between text-sm">
+        <div className="flex items-center gap-2">
+          <span className="font-medium">{author}</span>
+          <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+          <span className="opacity-50">{date}</span>
         </div>
-        {/* <p>likes</p> */}
       </div>
     </div>
   );

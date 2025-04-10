@@ -3,6 +3,7 @@ const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 export async function fetchPosts() {
   try {
+    // await new Promise((resolve) => setTimeout(resolve, 5000));
     const posts = await sql`SELECT * FROM posts`;
     return posts;
   } catch (error) {

@@ -6,26 +6,30 @@ import Link from "next/link";
 export default function Sidebar() {
   const [dark, setDark] = useState(false);
   useEffect(() => {
-    document.body.setAttribute("dark", `${dark}`);
+    if (dark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   }, [dark]);
 
-  useEffect(() => {
-    function myFunction(x: MediaQueryList) {
-      if (x.matches) {
-      }
-    }
+  // useEffect(() => {
+  //   function myFunction(x: MediaQueryList) {
+  //     if (x.matches) {
+  //     }
+  //   }
 
-    let x = window.matchMedia("(max-width: 700px)");
+  //   let x = window.matchMedia("(max-width: 700px)");
 
-    myFunction(x);
+  //   myFunction(x);
 
-    x.addEventListener("change", function () {
-      myFunction(x);
-    });
-  }, []);
+  //   x.addEventListener("change", function () {
+  //     myFunction(x);
+  //   });
+  // }, []);
 
   return (
-    <nav className="sidebar m-4 justify-between p-4 flex flex-wrap items-center flex-col max-sm:flex-row max-sm:py-0 max-sm:mb-0 ">
+    <nav className="sidebar m-4 max-sm:mx-2 justify-between p-4 flex flex-wrap items-center flex-col max-sm:flex-row max-sm:py-0 max-sm:mb-0 ">
       <div className="max-sm:flex">
         <Link href={"/search"}>
           <div className="flex sidebar-button">
