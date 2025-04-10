@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Terminal } from "lucide-react";
 import { AlertDestructive } from "../ui/alert";
 export const dynamic = "force-dynamic";
 
@@ -15,6 +13,7 @@ export default function Write() {
   const [content, setContent] = useState("");
   // Error incase something goes wrong
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // reset input after posting/sending the request to simulate input
   function resetInput() {
@@ -25,8 +24,11 @@ export default function Write() {
 
   async function handlePost() {
     resetInput();
+    setError(false);
 
     try {
+      setLoading(true);
+
       // send request with data to write to database
       const response = await fetch("/api/posts", {
         method: "POST",
@@ -38,6 +40,7 @@ export default function Write() {
 
       if (!response.ok) {
         setError(true);
+        setLoading(false);
       } else {
         router.push("/");
         router.refresh();
@@ -47,6 +50,7 @@ export default function Write() {
     } catch (error) {
       console.error("Error:", error);
       setError(true);
+      setLoading(false);
     }
   }
 
@@ -77,13 +81,14 @@ export default function Write() {
                 onChange={(e) => setContent(e.target.value)}
               />
             </div>
-            <div className="flex justify-between items-center gap-12">
+            <div className="flex items-center gap-4 mt-4 ">
               <button
-                className="mt-4 px-6 py-2 bg-black text-white hover:bg-neutral-900 focus:outline-none focus:ring-offset-2 cursor-pointer"
+                className="px-6 py-2 bg-black text-white hover:bg-neutral-900 focus:outline-none focus:ring-offset-2 cursor-pointer"
                 onClick={async () => handlePost()}
               >
                 Post
               </button>
+              {loading && <p>Posting...</p>}
             </div>
             {error && <AlertDestructive />}
           </div>
