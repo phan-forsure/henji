@@ -56,7 +56,7 @@ export default function Write() {
 
   return (
     <>
-      <div className="content px-8 p-2 pt-8">
+      <div className="content px-8 p-2 pt-8 h-full">
         <div className="posts overflow-y-scroll h-full">
           <div className="max-w-2xl mx-auto mt-8">
             <div className="space-y-4">
