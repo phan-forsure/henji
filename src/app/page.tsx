@@ -12,8 +12,8 @@ async function PostsList() {
   return (
     <>
       {posts.length == 0 && (
-        <h1 className="text-3xl p-4 w-full text-center">
-          No posts available at the moment :{"("}
+        <h1 className="text-3xl w-full h-full flex text-center items-center justify-center px-16">
+          No posts available at the moment
         </h1>
       )}
       {posts.map((post) => (

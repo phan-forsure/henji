@@ -1,6 +1,5 @@
 import { writePost } from "../../lib/data";
 import { NextResponse } from "next/server";
-export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
   console.log("API route called");

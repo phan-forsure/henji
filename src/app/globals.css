@@ -121,26 +121,13 @@ body {
 .content,
 main {
   grid-area: content;
-  height: 100vh;
 }
 
 .post-button:hover,
-.sidebar-button:hover {
+.sidebar-button:hover,
+.bar-button:hover {
   background-color: var(--hover-button);
 }
-/* 
-body[dark="true"] {
-  background-color: var(--foreground);
-  color: var(--background);
-}
-
-body[dark="true"] .sidebar-button:hover,
-body[dark="true"] .post-button:hover {
-  background-color: var(--hover-button-dark);
-}
-body[dark="true"] .post {
-  border-bottom: 2px solid white;
-} */
 
 ::-webkit-scrollbar {
   width: 0;

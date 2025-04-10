@@ -3,8 +3,16 @@ const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 export async function fetchPosts() {
   try {
-    // await new Promise((resolve) => setTimeout(resolve, 5000));
-    const posts = await sql`SELECT * FROM posts`;
+    const posts = await sql`
+      SELECT
+        id,
+        post_title,
+        post_author,
+        post_text,
+        created_at
+      FROM posts
+      ORDER BY created_at DESC
+    `;
     return posts;
   } catch (error) {
     console.error(error);
@@ -21,5 +29,20 @@ export async function writePost(title: string, author: string, text: string) {
   } catch (error) {
     console.error(error);
     throw new Error("Failed to create post");
+  }
+}
+
+export async function fetchSearchPosts(query: string, page?: string) {
+  const searchQuery = `%${query}%`;
+
+  try {
+    const posts = await sql`
+      SELECT * FROM posts WHERE post_text LIKE ${searchQuery}
+      ORDER BY created_at DESC
+    `;
+    return posts;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch search posts");
   }
 }
