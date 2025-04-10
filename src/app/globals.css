@@ -121,6 +121,7 @@ body {
 .content,
 main {
   grid-area: content;
+  height: 100vh;
 }
 
 .post-button:hover,
