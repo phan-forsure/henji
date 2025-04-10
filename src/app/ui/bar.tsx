@@ -17,6 +17,7 @@ export default function Bar() {
     } else {
       params.delete("search");
     }
+
     replace(`${pathname}?${params.toString()}`);
   }
 

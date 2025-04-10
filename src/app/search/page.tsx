@@ -10,7 +10,7 @@ export default async function Search(props: {
 }) {
   const searchParams = await props.searchParams;
   const query = searchParams.search || "";
-  
+
   return (
     <div className="content px-8 p-2 md:pt-8 max-sm:pt-2 max-sm:px-4 mb-12">
       <Bar />

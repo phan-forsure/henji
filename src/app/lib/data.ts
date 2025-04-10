@@ -37,7 +37,8 @@ export async function fetchSearchPosts(query: string, page?: string) {
 
   try {
     const posts = await sql`
-      SELECT * FROM posts WHERE post_text LIKE ${searchQuery}
+      SELECT * FROM posts
+      WHERE post_text LIKE ${searchQuery} OR post_title LIKE ${searchQuery} OR post_author LIKE ${searchQuery}
       ORDER BY created_at DESC
     `;
     return posts;
