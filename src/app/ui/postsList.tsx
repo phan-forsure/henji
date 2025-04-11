@@ -1,9 +1,6 @@
 import { fetchPosts } from "../lib/data";
 import Post from "./post";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-
 export default async function PostsList() {
   const posts = await fetchPosts();
 

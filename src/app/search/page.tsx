@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Bar from "../ui/bar";
 import SearchPosts from "./posts";
 import Loading from "../ui/loading";
+
 export default async function Search(props: {
   searchParams: Promise<{
     search: string;

@@ -2,6 +2,8 @@ import { Suspense } from "react";
 import PostsList from "./ui/postsList";
 import Loading from "./ui/loading";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default function Home() {
   return (
