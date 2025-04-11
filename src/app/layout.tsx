@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} antialiased grid px-32 max-md:px-8 max-sm:px-2`}
+        className={`${inter.className} antialiased grid lg:px-32 md:px-8 max-sm:px-2`}
       >
         <Sidebar />
         {children}

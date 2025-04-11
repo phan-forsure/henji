@@ -15,8 +15,8 @@ export default function Sidebar() {
   }, [dark]);
 
   return (
-    <nav className="sidebar m-4 max-sm:mx-2 justify-between p-4 flex flex-wrap items-center flex-col max-sm:flex-row max-sm:py-0 max-sm:mb-0 ">
-      <div className="max-sm:flex">
+    <nav className="sidebar m-4 max-sm:mx-2 justify-between p-4 flex flex-wrap items-center flex-col max-sm:flex-row max-sm:py-0 max-sm:mb-0 w-full">
+      <div className="max-sm:flex md:w-full">
         <Link href={"/search"}>
           <div className="flex sidebar-button">
             <Compass /> <span className="px-2">Search</span>
@@ -35,7 +35,7 @@ export default function Sidebar() {
       </div>
 
       <button
-        className="flex sidebar-button cursor-pointer"
+        className="flex sidebar-button cursor-pointer md:w-full"
         onClick={() => {
           setDark(!dark);
         }}
