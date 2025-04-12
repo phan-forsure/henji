@@ -3,6 +3,7 @@ interface option {
 }
 
 interface post {
+  id?: number
   title: string;
   author: string;
   text: string;

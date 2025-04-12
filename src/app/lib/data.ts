@@ -32,7 +32,7 @@ export async function writePost(title: string, author: string, text: string) {
   }
 }
 
-export async function fetchSearchPosts(query: string, page?: string) {
+export async function fetchSearchPosts(query: string) {
   const searchQuery = `%${query}%`;
 
   try {
@@ -45,5 +45,19 @@ export async function fetchSearchPosts(query: string, page?: string) {
   } catch (error) {
     console.error(error);
     throw new Error("Failed to fetch search posts");
+  }
+}
+
+export async function fetchPost(query: string) {
+  try {
+    const post = await sql`
+      SELECT * FROM posts
+      WHERE id = ${query}
+    `;
+
+    return post;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch post");
   }
 }

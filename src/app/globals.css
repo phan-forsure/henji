@@ -84,7 +84,6 @@
 }
 
 body {
-  overflow: hidden;
   margin: 0;
   height: 100vh;
   grid-template-columns: repeat(8, 1fr);
@@ -100,6 +99,7 @@ body {
 
   body {
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     grid-template-areas: "sidebar sidebar sidebar sidebar" "content content content content";
   }
 }
@@ -120,7 +120,7 @@ body {
 .content,
 main {
   grid-area: content;
-  height: 95vh;
+  height: 90vh;
 }
 
 .post-button:hover,

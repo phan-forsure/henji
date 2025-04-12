@@ -3,6 +3,7 @@ import Post from "../ui/post";
 
 export default async function SearchPosts({ query }: { query: string }) {
   const posts = await fetchSearchPosts(query);
+
   return (
     <div className="p-3">
       {posts.length == 0 && (
@@ -13,6 +14,7 @@ export default async function SearchPosts({ query }: { query: string }) {
       {posts.map((post) => (
         <Post
           key={post.id}
+          id={post.id}
           title={post.post_title}
           author={post.post_author}
           text={post.post_text}

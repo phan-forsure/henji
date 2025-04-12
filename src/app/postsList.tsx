@@ -1,5 +1,5 @@
-import { fetchPosts } from "../lib/data";
-import Post from "./post";
+import { fetchPosts } from "./lib/data";
+import Post from "./ui/post";
 
 export default async function PostsList() {
   const posts = await fetchPosts();
@@ -14,6 +14,7 @@ export default async function PostsList() {
       {posts.map((post) => (
         <Post
           key={post.id}
+          id={post.id}
           title={post.post_title}
           author={post.post_author}
           text={post.post_text}
