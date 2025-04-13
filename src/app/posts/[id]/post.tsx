@@ -1,5 +1,5 @@
 import { fetchPost } from "@/app/lib/data";
-import Comments from "./comments";
+import CommentSection from "./CommentSection";
 
 export default async function Post({ id }: { id: string }) {
   const post = await fetchPost(id);
@@ -38,7 +38,7 @@ export default async function Post({ id }: { id: string }) {
           </div>
         </div>
       </article>
-      <Comments />
+      <CommentSection id={id} />
     </>
   );
 }

@@ -61,3 +61,33 @@ export async function fetchPost(query: string) {
     throw new Error("Failed to fetch post");
   }
 }
+
+export async function writeComment(text: string, postId: string) {
+  try {
+    await sql`
+      INSERT INTO comments (comment_text, post_id)
+      values (${text}, ${postId})
+    `;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to write comment");
+  }
+}
+
+export async function fetchComments(id: string) {
+
+  try {
+    const comments = sql`
+      SELECT 
+        comments.id, 
+        comments.comment_text,
+        comments.created_at
+      FROM comments WHERE comments.post_id = ${id}
+      ORDER BY comments.created_at DESC
+    `;
+    return comments;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Failed to fetch comments");
+  }
+}

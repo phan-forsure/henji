@@ -1,10 +1,14 @@
+import { fetchComments } from "@/app/lib/data";
 import Comment from "@/app/ui/comment";
 
-export default async function Comments() {
+export default async function CommentComponent({ id }: { id: string }) {
+  const comments = await fetchComments(id);
+
   return (
-    <div className="mt-8">
-      <h3 className="text-xl font-semibold mb-6">Comments</h3>
-      <Comment />
+    <div className="space-y-4 mt-12">
+      {comments.map((comment) => (
+        <Comment key={comment.id} text={comment.comment_text} date={comment.created_at} />
+      ))}
     </div>
   );
 }

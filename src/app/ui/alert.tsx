@@ -1,12 +1,12 @@
 import { AlertCircle } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
-export function AlertDestructive() {
+export function AlertDestructive({ text }: { text: string }) {
   return (
     <Alert variant="destructive" className="h-fit my-4 rounded-none">
       <AlertCircle className="h-4 w-4" />
       <AlertTitle>Error</AlertTitle>
-      <AlertDescription>Failed to create post</AlertDescription>
+      <AlertDescription>{text}</AlertDescription>
     </Alert>
   );
 }

@@ -39,7 +39,7 @@ export default function Write() {
               <input
                 value={"Post"}
                 type="submit"
-                className="px-6 py-2 bg-black text-white hover:bg-neutral-900 focus:outline-none focus:ring-offset-2 cursor-pointer"
+                className="px-6 py-2 bg-accent text-accent-foreground focus:outline-none focus:ring-offset-2 cursor-pointer"
                 onClick={async () => handlePost()}
               ></input>
               {loading && <p>Posting...</p>}

@@ -1,7 +1,7 @@
 "use client";
 
+import { AlertDestructive } from "@/app/ui/alert";
 import { useEffect } from "react";
-import { AlertDestructive } from "../ui/alert";
 
 export default function Error({
   error,
@@ -12,7 +12,7 @@ export default function Error({
 }) {
   return (
     <div className="content px-8 p-2 pt-8 h-full">
-      <AlertDestructive text={`Fields cannot be empty`} />
+      <AlertDestructive text={`Comment field cannot be empty`} />
       <button
         className="px-6 py-2 bg-black text-white hover:bg-neutral-900 focus:outline-none focus:ring-offset-2 cursor-pointer"
         onClick={() => reset()}
