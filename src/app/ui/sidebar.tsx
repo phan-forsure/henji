@@ -15,7 +15,7 @@ export default function Sidebar() {
   }, [dark]);
 
   return (
-    <nav className="sidebar m-4 max-sm:mx-2 justify-between p-4 flex flex-wrap items-center flex-col max-sm:flex-row max-sm:py-0 max-sm:mb-0 w-full">
+    <nav className="sidebar max-sm:mt-4 max-sm:h-fit justify-between p-4 flex flex-wrap items-center flex-col max-sm:flex-row max-sm:py-0 max-sm:mb-0 w-full">
       <div className="max-sm:flex md:w-full">
         <Link href={"/search"}>
           <div className="flex sidebar-button">

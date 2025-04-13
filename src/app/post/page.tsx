@@ -21,17 +21,17 @@ export default function Write() {
                 name="postAuthor"
                 type="text"
                 placeholder="Author name"
-                className="w-full p-3 border border-gray-300 focus:outline-none text-accent-foreground"
+                className="w-full p-3 border border-accent focus:outline-none text-accent-foreground"
               />
               <input
                 name="postTitle"
                 type="text"
                 placeholder="Post title"
-                className="w-full p-3 border border-gray-300 focus:outline-none text-accent-foreground"
+                className="w-full p-3 border border-accent focus:outline-none text-accent-foreground"
               />
               <textarea
                 name="postText"
-                className="w-full h-64 p-4 border border-gray-300 focus:outline-none outline-none resize-none text-accent-foreground"
+                className="w-full h-64 p-4 border border-accent focus:outline-none outline-none resize-none text-accent-foreground"
                 placeholder="What's on your mind?"
               />
             </div>
