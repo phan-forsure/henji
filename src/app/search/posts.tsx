@@ -19,6 +19,7 @@ export default async function SearchPosts({ query }: { query: string }) {
           author={post.post_author}
           text={post.post_text}
           date={post.created_at.toString().slice(0, 15)}
+          commentCount={post.comments_count}
         />
       ))}
     </div>
