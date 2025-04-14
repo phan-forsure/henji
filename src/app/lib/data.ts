@@ -5,20 +5,12 @@ export async function fetchPosts() {
   try {
     const posts = await sql`
       SELECT
-        posts.id,
-        posts.post_title,
-        posts.post_author,
-        posts.post_text,
-        posts.created_at,
+        posts.*,
         COUNT(comments.id) AS comments_count
       FROM posts
       LEFT JOIN comments ON comments.post_id = posts.id
       GROUP BY 
-        posts.id,
-        posts.post_title,
-        posts.post_author,
-        posts.post_text,
-        posts.created_at
+        posts.id
       ORDER BY posts.created_at DESC;
     `;
     return posts;
@@ -45,8 +37,15 @@ export async function fetchSearchPosts(query: string) {
 
   try {
     const posts = await sql`
-      SELECT * FROM posts
-      WHERE post_text LIKE ${searchQuery} OR post_title LIKE ${searchQuery} OR post_author LIKE ${searchQuery}
+      SELECT 
+        posts.*,
+        COUNT(comments.id) AS comments_count FROM posts
+      LEFT JOIN comments ON comments.post_id = posts.id
+      WHERE
+        post_text LIKE ${searchQuery}
+        OR post_title LIKE ${searchQuery} 
+        OR post_author LIKE ${searchQuery}
+      GROUP BY posts.id
       ORDER BY created_at DESC
     `;
     return posts;
