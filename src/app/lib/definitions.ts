@@ -4,7 +4,7 @@ interface post {
   author: string;
   text: string;
   date: string;
-  commentCount: number
+  commentCount: number;
 }
 
 interface comment {
@@ -12,3 +12,8 @@ interface comment {
   text: string;
   date: string;
 }
+
+type CommentFormState = {
+  success: boolean;
+  error: string;
+};

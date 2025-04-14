@@ -23,14 +23,18 @@ const CreatePost = FormSchema.omit({ id: true, date: true }).refine(
   }
 );
 
-export async function postCreate(formData: FormData) {
-  const { author, title, text } = CreatePost.parse({
-    author: formData.get("postAuthor"),
-    title: formData.get("postTitle"),
-    text: formData.get("postText"),
-  });
+export async function postCreate(prevState: any, formData: FormData) {
+  try {
+    const { author, title, text } = CreatePost.parse({
+      author: formData.get("postAuthor"),
+      title: formData.get("postTitle"),
+      text: formData.get("postText"),
+    });
 
-  await writePost(title, author, text);
+    await writePost(title, author, text);
+  } catch (error) {
+    return { success: false, message: "Fields cannot be empty" };
+  }
   revalidatePath("/");
   redirect("/");
 }
@@ -48,12 +52,19 @@ const CreateComment = CommentSchema.omit({ id: true, date: true }).refine(
   }
 );
 
-export async function commentCreate(id: string, formData: FormData) {
-  const { text } = CreateComment.parse({
-    text: formData.get("commentText"),
-  });
-
-  await writeComment(text, id);
+export async function commentCreate(
+  prevState: { success: boolean; error: string },
+  formData: FormData,
+  id: string
+): Promise<{ success: boolean; error: string }> {
+  try {
+    const { text } = CreateComment.parse({
+      text: formData.get("commentText"),
+    });
+    await writeComment(text, id);
+  } catch (error) {
+    return { success: false, error: "Comment cannot be empty" };
+  }
   revalidatePath(`/posts/${id}`);
-  redirect(`/posts/${id}`)
+  redirect(`/posts/${id}`);
 }

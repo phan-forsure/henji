@@ -1,11 +1,28 @@
-import { commentCreate } from "../../lib/actions";
+"use client";
 
-export default async function WriteComment({ id }: { id: string }) {
-  const commentCreateWithId = commentCreate.bind(null, id);
+import { useActionState } from "react";
+import { commentCreate } from "../../lib/actions";
+import { AlertDestructive } from "@/app/ui/alert";
+
+const initialState = {
+  success: false,
+  error: "",
+};
+
+export default function WriteComment({ id }: { id: string }) {
+  const commentCreateWithId = (
+    prevState: CommentFormState,
+    formData: FormData
+  ): CommentFormState | Promise<CommentFormState> =>
+    commentCreate(prevState, formData, id);
+  const [state, formAction, pending] = useActionState(
+    commentCreateWithId,
+    initialState
+  );
 
   return (
     <div className="space-y-6">
-      <form className="space-y-4" action={commentCreateWithId}>
+      <form className="space-y-4" action={formAction}>
         <textarea
           name="commentText"
           placeholder="Write a comment..."
@@ -18,6 +35,8 @@ export default async function WriteComment({ id }: { id: string }) {
         >
           Post Comment
         </button>
+        {state.error && <AlertDestructive text={state.error} />}
+        {pending && <p>Posting...</p>}
       </form>
     </div>
   );

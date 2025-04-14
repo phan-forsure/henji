@@ -1,21 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import { postCreate } from "../lib/actions";
+import { AlertDestructive } from "../ui/alert";
 export const dynamic = "force-dynamic";
 
-export default function Write() {
-  const [loading, setLoading] = useState(false);
+const initialState = {
+  message: "",
+};
 
-  async function handlePost() {
-    setLoading(true);
-  }
+export default function Write() {
+  const [state, formAction, pending] = useActionState(postCreate, initialState);
 
   return (
     <>
       <div className="content px-8 p-2 pt-8 h-full">
         <div className="posts overflow-y-scroll h-full">
-          <form className="max-w-2xl mx-auto mt-8" action={postCreate}>
+          <form className="max-w-2xl mx-auto mt-8" action={formAction}>
             <div className="space-y-4">
               <input
                 name="postAuthor"
@@ -40,10 +41,10 @@ export default function Write() {
                 value={"Post"}
                 type="submit"
                 className="px-6 py-2 bg-accent text-accent-foreground focus:outline-none focus:ring-offset-2 cursor-pointer"
-                onClick={async () => handlePost()}
               ></input>
-              {loading && <p>Posting...</p>}
+              {pending && <p>Posting...</p>}
             </div>
+            {state.message != "" && <AlertDestructive text={state.message} />}
           </form>
         </div>
       </div>
