@@ -1,9 +1,10 @@
 interface post {
-  id?: number;
+  id: number;
   title: string;
   author: string;
   text: string;
   date: string;
+  commentCount: number
 }
 
 interface comment {

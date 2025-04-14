@@ -5,13 +5,21 @@ export async function fetchPosts() {
   try {
     const posts = await sql`
       SELECT
-        id,
-        post_title,
-        post_author,
-        post_text,
-        created_at
+        posts.id,
+        posts.post_title,
+        posts.post_author,
+        posts.post_text,
+        posts.created_at,
+        COUNT(comments.id) AS comments_count
       FROM posts
-      ORDER BY created_at DESC
+      LEFT JOIN comments ON comments.post_id = posts.id
+      GROUP BY 
+        posts.id,
+        posts.post_title,
+        posts.post_author,
+        posts.post_text,
+        posts.created_at
+      ORDER BY posts.created_at DESC;
     `;
     return posts;
   } catch (error) {
@@ -75,7 +83,6 @@ export async function writeComment(text: string, postId: string) {
 }
 
 export async function fetchComments(id: string) {
-
   try {
     const comments = sql`
       SELECT 
@@ -91,3 +98,16 @@ export async function fetchComments(id: string) {
     throw new Error("Failed to fetch comments");
   }
 }
+
+// export async function fetchCommentCount(id: string) {
+//   try {
+//     const commentCount = sql`
+//       SELECT COUNT(*) FROM comments
+//       WHERE comments.post_id = ${id}
+//     `;
+//     return commentCount;
+//   } catch (error) {
+//     console.error(error);
+//     throw new Error("Failed to fetch comments count");
+//   }
+// }
