@@ -108,6 +108,7 @@ body {
   @apply cursor-pointer my-2;
 }
 
+
 .sidebar {
   grid-area: sidebar;
 }
@@ -117,6 +118,9 @@ body {
   padding: 0.5rem;
 }
 
+article h2, article p {
+  word-wrap: break-word;
+}
 .content,
 main {
   grid-area: content;

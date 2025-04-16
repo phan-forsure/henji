@@ -20,6 +20,7 @@ export default async function SearchPosts({ query }: { query: string }) {
           text={post.post_text}
           date={post.created_at.toString().slice(0, 15)}
           commentCount={post.comments_count}
+          image={post.post_image}
         />
       ))}
     </div>

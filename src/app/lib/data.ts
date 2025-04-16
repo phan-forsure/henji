@@ -1,4 +1,5 @@
 import postgres from "postgres";
+
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 export async function fetchPosts() {
@@ -20,11 +21,16 @@ export async function fetchPosts() {
   }
 }
 
-export async function writePost(title: string, author: string, text: string) {
+export async function writePost(
+  title: string,
+  author: string,
+  text: string,
+  image: string | null
+) {
   try {
     await sql`
-      INSERT INTO posts (post_title, post_author, post_text)
-      VALUES (${title}, ${author}, ${text})
+      INSERT INTO posts (post_title, post_author, post_text, post_image)
+      VALUES (${title}, ${author}, ${text}, ${image})
     `;
   } catch (error) {
     console.error(error);
@@ -97,16 +103,3 @@ export async function fetchComments(id: string) {
     throw new Error("Failed to fetch comments");
   }
 }
-
-// export async function fetchCommentCount(id: string) {
-//   try {
-//     const commentCount = sql`
-//       SELECT COUNT(*) FROM comments
-//       WHERE comments.post_id = ${id}
-//     `;
-//     return commentCount;
-//   } catch (error) {
-//     console.error(error);
-//     throw new Error("Failed to fetch comments count");
-//   }
-// }

@@ -5,6 +5,7 @@ interface post {
   text: string;
   date: string;
   commentCount: number;
+  image?: string;
 }
 
 interface comment {

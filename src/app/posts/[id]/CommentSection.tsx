@@ -1,14 +1,14 @@
 import WriteComment from "@/app/posts/[id]/WriteComment";
 import CommentComponent from "./comments";
 import { Suspense } from "react";
-import Loading from "./loading";
+import Spinner from "@/app/ui/spinner";
 
 export default async function CommentSection({ id }: { id: string }) {
   return (
     <div className="mt-8">
       <h3 className="text-xl font-semibold mb-6">Comments</h3>
       <WriteComment id={id} />
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<Spinner />}>
         <CommentComponent id={id} />
       </Suspense>
     </div>

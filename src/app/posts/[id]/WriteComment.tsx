@@ -24,6 +24,7 @@ export default function WriteComment({ id }: { id: string }) {
     <div className="space-y-6">
       <form className="space-y-4" action={formAction}>
         <textarea
+          required
           name="commentText"
           placeholder="Write a comment..."
           className="w-full text-accent-foreground p-4 rounded-lg border border-accent-600 bg-accent focus:outline-none focus:ring-2 focus:ring-accent transition-all resize-none"

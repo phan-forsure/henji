@@ -1,5 +1,6 @@
 import { fetchPost } from "@/app/lib/data";
 import CommentSection from "./CommentSection";
+import Image from "@/app/ui/image"
 
 export default async function Post({ id }: { id: string }) {
   const post = await fetchPost(id);
@@ -14,7 +15,7 @@ export default async function Post({ id }: { id: string }) {
     );
   }
 
-  const { post_title, post_author, post_text, created_at } = post[0];
+  const { post_title, post_author, post_text, created_at, post_image } = post[0];
 
   return (
     <>
@@ -24,6 +25,10 @@ export default async function Post({ id }: { id: string }) {
             {post_title}
           </h2>
           <p className="leading-relaxed text-lg">{post_text}</p>
+        </div>
+
+        <div className="image w-full flex justify-center">
+          <Image path={post_image} />
         </div>
 
         <div className="flex items-center justify-between text-sm">
