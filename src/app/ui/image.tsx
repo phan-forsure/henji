@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import Spinner from "./spinner";
+import { Loader2 } from "lucide-react";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -52,7 +53,12 @@ export default function ImageComponent({ path }: { path: string | undefined }) {
     return null;
   }
 
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <div className="spinner flex justify-center">
+        <Loader2 className="animate-spin" size={25} />
+      </div>
+    );
   if (!imageUrl) return null;
   return <img src={imageUrl} alt="Post Image" className="rounded-xl" />;
 }

@@ -34,7 +34,7 @@ export default function WriteComment({ id }: { id: string }) {
           type="submit"
           className="px-4 py-2 text-accent-foreground bg-accent transition-colors cursor-pointer"
         >
-          Post Comment
+          Write Comment
         </button>
         {state.error && <AlertDestructive text={state.error} />}
         {pending && <p>Posting...</p>}

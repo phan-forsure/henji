@@ -19,7 +19,7 @@ export default async function Post({ id }: { id: string }) {
 
   return (
     <>
-      <article className="post w-full p-12 max-sm:p-4 max-md:px-8 max-sm:py-4 flex flex-col gap-4 border-b-2 shadow-sm bg-sidebar-accent border-[1px]">
+      <article className="post w-full p-12 max-sm:p-4 max-md:px-8 max-sm:py-4 flex flex-col gap-4 border-b-2 shadow-sm bg-sidebar-accent border-[1px] transition-all">
         <div className="flex flex-col gap-2">
           <h2 className="text-3xl font-semibold mb-4 break-words">
             {post_title}
