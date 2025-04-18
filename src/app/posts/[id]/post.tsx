@@ -9,6 +9,50 @@ type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
+function TextWithLinks({ text }: { text: string }) {
+  // Regular expression to match URLs starting with http:// or https://
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+
+  // Keep track of where we are in the text
+  let lastIndex = 0;
+  // Array to store our final JSX elements
+  const result = [];
+  // Variable to store each URL match
+  let match;
+
+  // Loop through the text finding all URLs
+  while ((match = urlRegex.exec(text)) !== null) {
+    // match.index is the position where the URL starts in the text
+
+    // If there's text before this URL, add it
+    if (match.index > lastIndex) {
+      result.push(text.slice(lastIndex, match.index));
+    }
+
+    result.push(
+      <a
+        key={match.index}
+        href={match[0]}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 hover:underline"
+      >
+        {match[0]}
+      </a>
+    );
+
+    // Update our position to after this URL
+    lastIndex = match.index + match[0].length;
+  }
+
+  // If there's any text left after the last URL, add it
+  if (lastIndex < text.length) {
+    result.push(text.slice(lastIndex));
+  }
+
+  return <>{result}</>;
+}
+
 export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvedMetadata
@@ -45,7 +89,9 @@ export default async function Post({ id }: { id: string }) {
           <h2 className="text-3xl font-semibold mb-4 break-words">
             {post_title}
           </h2>
-          <p className="leading-relaxed text-lg">{post_text}</p>
+          <p className="leading-relaxed text-lg">
+            <TextWithLinks text={post_text} />
+          </p>
         </div>
 
         <div className="image w-full flex justify-center">
