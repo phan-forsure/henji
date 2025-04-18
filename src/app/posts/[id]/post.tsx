@@ -1,6 +1,26 @@
 import { fetchPost } from "@/app/lib/data";
 import CommentSection from "./CommentSection";
-import Image from "@/app/ui/image"
+import Image from "@/app/ui/image";
+import type { Metadata, ResolvedMetadata } from "next";
+import { X } from "lucide-react";
+
+type Props = {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvedMetadata
+): Promise<Metadata> {
+  const id = (await params).id;
+  const post = await fetchPost(id);
+
+  return {
+    title: post[0].post_title,
+    description: post[0].post_text,
+  };
+}
 
 export default async function Post({ id }: { id: string }) {
   const post = await fetchPost(id);
@@ -15,7 +35,8 @@ export default async function Post({ id }: { id: string }) {
     );
   }
 
-  const { post_title, post_author, post_text, created_at, post_image } = post[0];
+  const { post_title, post_author, post_text, created_at, post_image } =
+    post[0];
 
   return (
     <>
